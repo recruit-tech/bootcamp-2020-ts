@@ -34,8 +34,12 @@ router.get("/", (req, res, next) => {
 
 router.patch("/:id", (req, res, next) => {
   const id = parseInt(req.params.id);
-  const todo = todoList.find(todo => todo.id == id) as Todo;
-  const { name, done } = req.body;
+  const todo = todoList.find(todo => todo.id == id);
+  if (!todo) {
+    return res.status(404).send()
+  }
+  const name = String(req.body.name)
+  const done = Boolean(req.body.done)
   todo.name = name;
   todo.done = done;
   return res.status(201).send(todo);
