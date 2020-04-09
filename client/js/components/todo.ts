@@ -2,9 +2,9 @@ import store from "../store";
 import { updateTodoAction, removeTodoAction } from "../flux/index.js";
 
 export type TodoProps = {
-  id: number,
-  name: string,
-  done: boolean
+  id: number | undefined,
+  name: string | undefined,
+  done: boolean | undefined
 };
 
 class Todo {
